@@ -13,6 +13,8 @@ apps blog website for https://www.pacegege.com soon | make with React JS
 
 ## Command 
 
++ write command with `yarn` or `npm`
+
 | Name | Description |
 |------------|------------------------------------|
 | start | run server with mode development |
