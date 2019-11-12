@@ -9,7 +9,7 @@ export default function RouterWeb() {
     <BrowserRouter>
       <Route path="/" exact component={Home} />
       <Route path="/about" exact component={About} />
-      <Route path="/detail/:id" exact component={PostDetail} />
+      <Route path="/post/detail/:alias" exact component={PostDetail} />
     </BrowserRouter>
   )
 }

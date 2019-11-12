@@ -13,32 +13,28 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-function SectionBlogPost() {
+function SectionPostRelated({ list }) {
   const dispatch = useStoreDispatch()
-  const payload = 7
-  const { Posts: statePosts } = useStoreState(
+  const payload = list
+  const { PostRelated: statePostRelated } = useStoreState(
     globalState => globalState,
   )
 
-  const { initialState } = statePosts
+  const { initialState } = statePostRelated
   const { items } = initialState
 
   React.useEffect(() => {
-    dispatch.Posts.getPosts(payload)
-  }, [dispatch.Posts, payload])
+    dispatch.PostRelated.getPostRelated(payload)
+  }, [dispatch.PostRelated, payload])
 
   return (
     <React.Fragment>
       <ShimmerWrapper
-        isLoading={statePosts.initialState.loading}
-        isError={statePosts.initialState.error}
+        isLoading={initialState.loading}
+        isError={initialState.error}
         placeholder={<Shimmer />}
       >
-        <Section
-          padding="0.625rem 0.625rem"
-          title="5 Top Post"
-          linkTo="/mantaps"
-        >
+        <Section padding="0.625rem 0.625rem" title="Post Related">
           <Horizontal>
             {items &&
               items.data &&
@@ -64,4 +60,4 @@ function SectionBlogPost() {
   )
 }
 
-export default SectionBlogPost
+export default SectionPostRelated

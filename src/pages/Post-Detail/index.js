@@ -1,9 +1,14 @@
-import React from 'react'
+import * as React from 'react'
+import { useStoreDispatch, useStoreState } from 'easy-peasy'
 import styled from 'styled-components'
+import MyDate from '../../lib/date'
+import ShimmerWrapper from '../../lib/shimmer-wrapper'
 import theme from '../../common/theme'
 import Layout from '../../common/components/Layout'
 import Image from '../../common/components/Image'
 import Section from '../../common/components/Section'
+import Shimmer from '../../common/components/Shimmer'
+import SectionPostRelated from './post-related'
 
 const StyledTitle = styled.div`
   margin-bottom: 10px;
@@ -30,37 +35,53 @@ const StyledDescription = styled.div`
   font-size: 14pt;
 `
 
-function PostDetail() {
-  const postDetail = {
-    title:
-      'Pengenalan React JS - membuat aplikasi sederhana dengan Create-React-Apps',
-    date: '13 Desember 2019',
-    image_url: 'https://loremflickr.com/320/240?random=1',
-    description:
-      '<p>Contrary to popular belief, <i>Lorem Ipsum</i> is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>',
-    tag: 'laravel',
-  }
+function PostDetail(props) {
+  const dispatch = useStoreDispatch()
+  const { PostDetail: statePostDetail } = useStoreState(
+    globalState => globalState,
+  )
+
+  const { initialState } = statePostDetail
+  const { items } = initialState
+  const { match } = props
+  const { alias } = match.params
+
+  React.useEffect(() => {
+    dispatch.PostDetail.getPostDetail({ alias })
+  }, [dispatch.PostDetail, alias])
 
   return (
     <Layout variant="detail">
-      <Section>
-        <StyledTitle>{postDetail['title']}</StyledTitle>
-        <Image
-          alt={postDetail['image_url']}
-          source={postDetail['image_url']}
-        />
-        <StyledInfo>
-          {postDetail['date']}, {postDetail['tag']}, author by{' '}
-          <strong>Ryan Pace</strong>
-        </StyledInfo>
-        <StyledDescription>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `${postDetail['description']}`,
-            }}
-          />
-        </StyledDescription>
-      </Section>
+      <ShimmerWrapper
+        isError={initialState.error}
+        isLoading={initialState.loading}
+        placeholder={<Shimmer variant="post-detail" />}
+      >
+        {items && items.data && (
+          <React.Fragment>
+            <Section margin="0px 0px 10px 0px">
+              <StyledTitle>{items.data['title']}</StyledTitle>
+              <Image
+                alt={items.data['image_post']}
+                source={items.data['image_post']}
+              />
+              <StyledInfo>
+                {`${MyDate(items.data['created_at'])}`},{' '}
+                {items.data['tags']['title']}, author by{' '}
+                <strong>{items.data['users']['user_name']}</strong>
+              </StyledInfo>
+              <StyledDescription>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `${items.data['description']}`,
+                  }}
+                />
+              </StyledDescription>
+            </Section>
+            <SectionPostRelated list={items.data['tags']['id']} />
+          </React.Fragment>
+        )}
+      </ShimmerWrapper>
     </Layout>
   )
 }

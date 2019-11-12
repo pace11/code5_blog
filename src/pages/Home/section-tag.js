@@ -12,20 +12,17 @@ function SectionTag() {
     globalState => globalState,
   )
 
+  const { initialState } = stateTags
+  const { items } = initialState
+
   React.useEffect(() => {
     dispatch.Tags.getTags()
   }, [dispatch.Tags])
 
-  const data =
-    stateTags &&
-    stateTags.initialState &&
-    stateTags.initialState.items &&
-    stateTags.initialState.items.data
-
   return (
     <ShimmerWrapper
-      isLoading={stateTags.initialState.loading}
-      isError={stateTags.initialState.error}
+      isLoading={initialState.loading}
+      isError={initialState.error}
       placeholder={<Shimmer variant="tags" />}
     >
       <Section
@@ -34,8 +31,9 @@ function SectionTag() {
         title="Tag"
       >
         <Horizontal>
-          {data &&
-            data.map(item => (
+          {items &&
+            items.data &&
+            items.data.map(item => (
               <Tag key={item.id} to={`/tag/detail/${item.title}`}>
                 {item.title}
               </Tag>

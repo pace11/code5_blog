@@ -58,6 +58,21 @@ function Shimmer({ variant }) {
           </Horizontal>
         </Section>
       )
+    case 'post-detail':
+      return (
+        <Section padding="0.625rem 0.5rem">
+          <StyledWrapper>
+            <StyledDivShimmer height="2rem" width="340px" />
+          </StyledWrapper>
+          <StyledWrapper>
+            <StyledDivShimmer height="10rem" width="340px" />
+            <StyledDivShimmer height="1rem" width="340px" />
+            <StyledDivShimmer height="1rem" width="340px" />
+            <StyledDivShimmer height="1rem" width="340px" />
+            <StyledDivShimmer height="1rem" width="340px" />
+          </StyledWrapper>
+        </Section>
+      )
     case 'image':
       return (
         <Section

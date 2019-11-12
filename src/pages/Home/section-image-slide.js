@@ -13,30 +13,30 @@ function SectionImageSlide() {
     globalState => globalState,
   )
 
+  const { initialState } = statePosts
+  const { items } = initialState
+
   React.useEffect(() => {
     dispatch.Posts.getPosts(payload)
   }, [dispatch.Posts, payload])
 
-  const data =
-    statePosts &&
-    statePosts.initialState &&
-    statePosts.initialState.items &&
-    statePosts.initialState.items.data
-
   return (
     <React.Fragment>
       <ShimmerWrapper
-        isLoading={statePosts.initialState.loading}
-        isError={statePosts.initialState.error}
+        isLoading={initialState.loading}
+        isError={initialState.error}
         placeholder={<Shimmer variant="image" />}
       >
         <Section margin="0px 0px 10px 0px">
           <Swipeable
-            length={data && data.length}
-            hasPagination={data && data.length > 1}
+            length={items && items.data && items.data.length}
+            hasPagination={
+              items && items.data && items.data.length > 1
+            }
           >
-            {data &&
-              data.map(item => (
+            {items &&
+              items.data &&
+              items.data.map(item => (
                 <Image
                   key={item.id}
                   alt={item.image_banner}
