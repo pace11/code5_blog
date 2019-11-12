@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faTag,
+  faCalendarAlt,
+} from '@fortawesome/free-solid-svg-icons'
 import theme from '../../theme'
 
 const StyledCard = styled.div`
-  height: 300px;
+  height: 330px;
+  margin: ${props => props.margin};
+  position: relative;
 `
 
 const StyledImage = styled.div`
@@ -26,6 +31,7 @@ const StyledTitle = styled.div`
   z-index: 1;
   border-radius: 0px 10px 10px 0px;
   color: ${theme.colors.white_1};
+  border-left: 3px solid ${theme.colors.blue_light};
 `
 
 const StyledDate = styled.div`
@@ -37,36 +43,42 @@ const StyledDate = styled.div`
   border-radius: 0px 10px 10px 0px;
   z-index: 1;
   color: ${theme.colors.white_1};
-  font-size: 12px;
+  border-left: 3px solid ${theme.colors.blue_light};
+  font-size: 14px;
 `
 
 const StyleBody = styled.div`
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5;
-  margin-top: 100px;
   padding: 0px 5px 0px 5px;
-  height: 90px;
-  border-bottom: 1.5px solid ${theme.colors.gray_light};
+  height: 120px;
   color: ${theme.colors.black_75};
+  position: absolute;
+  bottom: 0;
 `
 
-function Card({ imageUrl, title, date, description }) {
+function Card({ margin, imageUrl, title, tag, date, description }) {
   return (
-    <StyledCard>
+    <StyledCard margin={margin}>
       <StyledImage imageUrl={imageUrl} />
       <StyledTitle>{title}</StyledTitle>
       <StyledDate>
-        <FontAwesomeIcon icon={faCalendarAlt} /> {date}
+        <FontAwesomeIcon icon={faCalendarAlt} /> {date},{' '}
+        <FontAwesomeIcon icon={faTag} /> {tag}
       </StyledDate>
       <StyleBody>
         <div dangerouslySetInnerHTML={{ __html: `${description}` }} />
       </StyleBody>
     </StyledCard>
   )
+}
+
+Card.defaultProps = {
+  margin: '0px',
 }
 
 export default Card

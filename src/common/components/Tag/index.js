@@ -23,7 +23,7 @@ function Tag({ children, linkTo }) {
 }
 
 Tag.defaultProps = {
-    linkTo: '/'
+  linkTo: '/',
 }
 
 export default Tag

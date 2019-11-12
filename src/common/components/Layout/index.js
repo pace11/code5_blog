@@ -9,10 +9,10 @@ const StyledMain = styled.div`
   margin-top: 50px;
 `
 
-function Layout({ children }) {
+function Layout({ children, variant }) {
   return (
     <React.Fragment>
-      <Navigation />
+      <Navigation variant={variant} />
       <StyledMain>{children}</StyledMain>
     </React.Fragment>
   )

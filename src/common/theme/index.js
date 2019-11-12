@@ -2,6 +2,7 @@ export default {
   colors: {
     orange: '#f58220',
     black: '#333333',
+    black_85: 'rgba(51, 51, 51, 0.85)',
     black_75: 'rgba(51, 51, 51, 0.75)',
     black_50: 'rgba(51, 51, 51, 0.5)',
     black_20: 'rgba(51, 51, 51, 0.2)',

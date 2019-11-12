@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const SvgFolder = props => (
   <svg viewBox="0 0 58 58" {...props}>
@@ -20,6 +20,6 @@ const SvgFolder = props => (
     <path fill="#cec9ae" d="M10 28.761V2H7v34.986z" />
     <path fill="#d1bf86" d="M7 36.986V4H4v41.211z" />
   </svg>
-);
+)
 
-export default SvgFolder;
+export default SvgFolder

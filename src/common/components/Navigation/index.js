@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import history from '../../../lib/history'
 import theme from '../../theme'
 import BookSVG from '../../../assets/icons/Folder'
+import BackSVG from '../../../assets/icons/LeftArrowhead'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -33,6 +35,13 @@ const BookIcon = styled(BookSVG)`
   margin: 0.5rem 0;
 `
 
+const BackIcon = styled(BackSVG)`
+  height: auto;
+  fill: ${theme.colors.black_50};
+  transform: scale(0.8);
+  margin: 0.2rem 0;
+`
+
 const Brand = styled.div`
   margin: 10px;
   background-color: ${theme.colors.gray_lighter_alt};
@@ -47,13 +56,25 @@ const StyledTitle = styled.h2`
   color: ${theme.colors.gray_lighter_alt};
 `
 
-function StyledNavigation() {
+function StyledNavigation({ variant }) {
+  const RenderIcon = ({ type }) => {
+    switch (type) {
+      case 'detail':
+        return (
+          <div onClick={history.goBack}>
+            <BackIcon />
+          </div>
+        )
+      default:
+        return <BookIcon />
+    }
+  }
   return (
     <React.Fragment>
       <StyledNav>
         <StyledNavItem>
           <Brand>
-            <BookIcon />
+            <RenderIcon type={variant} />
           </Brand>
         </StyledNavItem>
         <StyledNavItem>
@@ -62,6 +83,10 @@ function StyledNavigation() {
       </StyledNav>
     </React.Fragment>
   )
+}
+
+StyledNavigation.defaultProps = {
+  variant: '',
 }
 
 export default StyledNavigation

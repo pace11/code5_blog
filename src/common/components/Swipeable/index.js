@@ -45,7 +45,7 @@ function Pagination({ dots, index, onClick }) {
         : theme.colors.blue_light};
     border-radius: 6px;
     height: ${props => (!props.focus ? '8px' : '10px')};
-    width: ${props => (!props.focus ? '8px' : '10px')};
+    width: ${props => (!props.focus ? '8px' : '20px')};
     margin-right: 8px;
     :last-child {
       margin-right: 0;

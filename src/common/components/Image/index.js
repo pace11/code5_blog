@@ -30,7 +30,7 @@ function Image({
   }
   
   Image.defaultProps = {
-    radius: 0,
+    radius: '0px',
     width: '100%',
     height: 'auto',
   }

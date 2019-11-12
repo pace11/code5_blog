@@ -57,7 +57,7 @@ function Section({
 Section.defaultProps = {
   padding: '0.625rem 0',
   margin: '0px 0px 0px 0px',
-  backgroundColor: '',
+  backgroundColor: theme.colors.gray_lighter,
   title: '',
   linkTo: '',
 }
