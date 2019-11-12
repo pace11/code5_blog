@@ -7,12 +7,12 @@ import RouterWeb from './router.web'
 import theme from './common/theme'
 
 const GlobalStyled = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Abel');
   html,
   body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    @import url('https://fonts.googleapis.com/css?family=Abel');
     font-family: 'Abel', sans-serif;
     font-size: 17px;
     background-color: ${theme.colors.gray_light};

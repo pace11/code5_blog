@@ -9,4 +9,4 @@ apps blog website for https://www.pacegege.com soon | make with React JS
 
 + Please clone this repository
 + use Command `yarn install` or `npm install`
-+ yarn start from running development
++ `yarn start` or `npm start` for running development
