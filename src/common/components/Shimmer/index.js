@@ -73,6 +73,18 @@ function Shimmer({ variant }) {
           </StyledWrapper>
         </Section>
       )
+    case 'tag-detail':
+      return (
+        <Section padding="0.5rem 0.625rem" margin="0px 0px 10px 0px">
+          <StyledWrapper>
+            <StyledDivShimmer height="1rem" width="100px" />
+          </StyledWrapper>
+          <StyledWrapper>
+            <StyledDivShimmer height="1rem" width="340px" />
+            <StyledDivShimmer height="1rem" width="340px" />
+          </StyledWrapper>
+        </Section>
+      )
     case 'image':
       return (
         <Section

@@ -14,8 +14,9 @@ const StyledLink = styled(Link)`
 `
 
 function SectionPostRelated({ list }) {
+  const id = list.tags['id']
+  const alias = list.alias
   const dispatch = useStoreDispatch()
-  const payload = list
   const { PostRelated: statePostRelated } = useStoreState(
     globalState => globalState,
   )
@@ -24,21 +25,20 @@ function SectionPostRelated({ list }) {
   const { items } = initialState
 
   React.useEffect(() => {
-    dispatch.PostRelated.getPostRelated(payload)
-  }, [dispatch.PostRelated, payload])
+    dispatch.PostRelated.getPostRelated({ id, alias })
+  }, [dispatch.PostRelated, id, alias])
 
   return (
     <React.Fragment>
-      <ShimmerWrapper
-        isLoading={initialState.loading}
-        isError={initialState.error}
-        placeholder={<Shimmer />}
-      >
-        <Section padding="0.625rem 0.625rem" title="Post Related">
-          <Horizontal>
-            {items &&
-              items.data &&
-              items.data.map(item => (
+      {items && items.data.length > 0 && (
+        <ShimmerWrapper
+          isLoading={initialState.loading}
+          isError={initialState.error}
+          placeholder={<Shimmer />}
+        >
+          <Section padding="0.625rem 0.625rem" title="Post Related">
+            <Horizontal>
+              {items.data.map(item => (
                 <StyledLink
                   key={item.id}
                   to={`/post/detail/${item.alias}`}
@@ -53,9 +53,10 @@ function SectionPostRelated({ list }) {
                   />
                 </StyledLink>
               ))}
-          </Horizontal>
-        </Section>
-      </ShimmerWrapper>
+            </Horizontal>
+          </Section>
+        </ShimmerWrapper>
+      )}
     </React.Fragment>
   )
 }

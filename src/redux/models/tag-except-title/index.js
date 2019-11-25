@@ -1,7 +1,7 @@
 import { action, thunk } from 'easy-peasy'
 import Axios from 'axios'
 
-const PostRelated = {
+const TagExceptTitle = {
   initialState: {
     loading: true,
     error: false,
@@ -20,12 +20,12 @@ const PostRelated = {
     state.initialState.errorMessage = payload
   }),
 
-  getPostRelated: thunk(async (actions, payload) => {
+  getTagExceptTitle: thunk(async (actions, payload) => {
     try {
-      const { id, alias } = payload
+      const { title } = payload
       const config = {
         method: 'get',
-        url: `http://127.0.0.1:8000/api/v1/post/related/${id}/${alias}`,
+        url: `http://127.0.0.1:8000/api/v1/tags/except/${title}`,
       }
       let response = await Axios(config)
       actions.fetchAction(response.data)
@@ -33,10 +33,6 @@ const PostRelated = {
       actions.error(error || error.errorMessage)
     }
   }),
-
-  init: thunk(async (actions, payload, { dispatch }) => {
-    await dispatch.PostRelated.getPostRelated()
-  }),
 }
 
-export default PostRelated
+export default TagExceptTitle

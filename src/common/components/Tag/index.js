@@ -13,7 +13,7 @@ const StyledTag = styled(Link)`
   );
   color: ${theme.colors.gray_lighter_alt};
   border-radius: 15px;
-  margin-right: 5px;
+  margin: 0px 5px 5px 0px;
   text-decoration: none;
   outline: none;
 `

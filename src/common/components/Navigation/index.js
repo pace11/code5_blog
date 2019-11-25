@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import history from '../../../lib/history'
 import theme from '../../theme'
 import BookSVG from '../../../assets/icons/Folder'
 import BackSVG from '../../../assets/icons/LeftArrowhead'
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
 
 const StyledNav = styled.nav`
   display: flex;
@@ -78,7 +83,9 @@ function StyledNavigation({ variant }) {
           </Brand>
         </StyledNavItem>
         <StyledNavItem>
-          <StyledTitle>CODE5 BLOG</StyledTitle>
+          <StyledLink to="/">
+            <StyledTitle>CODE5 BLOG</StyledTitle>
+          </StyledLink>
         </StyledNavItem>
       </StyledNav>
     </React.Fragment>

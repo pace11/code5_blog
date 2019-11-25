@@ -6,18 +6,19 @@ import Section from '../../common/components/Section'
 import Tag from '../../common/components/Tag'
 import Shimmer from '../../common/components/Shimmer'
 
-function SectionTag() {
+function SectionTagOthers({ list }) {
   const dispatch = useStoreDispatch()
-  const { Tags: stateTags } = useStoreState(
+  const { title } = list
+  const { TagExceptTitle: stateTagExceptTitle } = useStoreState(
     globalState => globalState,
   )
 
-  const { initialState } = stateTags
+  const { initialState } = stateTagExceptTitle
   const { items } = initialState
 
   React.useEffect(() => {
-    dispatch.Tags.getTags()
-  }, [dispatch.Tags])
+    dispatch.TagExceptTitle.getTagExceptTitle({ title })
+  }, [dispatch.TagExceptTitle, title])
 
   return (
     <ShimmerWrapper
@@ -28,7 +29,7 @@ function SectionTag() {
       <Section
         margin="0px 0px 10px 0px"
         padding="0.625rem 0.625rem"
-        title="Tags"
+        title="Tags Another"
       >
         <Horizontal>
           {items &&
@@ -44,4 +45,4 @@ function SectionTag() {
   )
 }
 
-export default SectionTag
+export default SectionTagOthers

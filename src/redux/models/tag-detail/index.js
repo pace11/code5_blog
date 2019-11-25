@@ -1,7 +1,7 @@
 import { action, thunk } from 'easy-peasy'
 import Axios from 'axios'
 
-const PostRelated = {
+const TagDetail = {
   initialState: {
     loading: true,
     error: false,
@@ -20,12 +20,12 @@ const PostRelated = {
     state.initialState.errorMessage = payload
   }),
 
-  getPostRelated: thunk(async (actions, payload) => {
+  getTagDetail: thunk(async (actions, payload) => {
     try {
-      const { id, alias } = payload
+      const { title } = payload
       const config = {
         method: 'get',
-        url: `http://127.0.0.1:8000/api/v1/post/related/${id}/${alias}`,
+        url: `http://127.0.0.1:8000/api/v1/tag/detail/${title}`,
       }
       let response = await Axios(config)
       actions.fetchAction(response.data)
@@ -35,8 +35,8 @@ const PostRelated = {
   }),
 
   init: thunk(async (actions, payload, { dispatch }) => {
-    await dispatch.PostRelated.getPostRelated()
+    await dispatch.TagDetail.getTagDetail()
   }),
 }
 
-export default PostRelated
+export default TagDetail

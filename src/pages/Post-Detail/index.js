@@ -8,7 +8,7 @@ import Layout from '../../common/components/Layout'
 import Image from '../../common/components/Image'
 import Section from '../../common/components/Section'
 import Shimmer from '../../common/components/Shimmer'
-import SectionPostRelated from './post-related'
+import SectionPostRelated from './section-post-related'
 
 const StyledTitle = styled.div`
   margin-bottom: 10px;
@@ -78,7 +78,7 @@ function PostDetail(props) {
                 />
               </StyledDescription>
             </Section>
-            <SectionPostRelated list={items.data['tags']['id']} />
+            <SectionPostRelated list={items.data}/>
           </React.Fragment>
         )}
       </ShimmerWrapper>
